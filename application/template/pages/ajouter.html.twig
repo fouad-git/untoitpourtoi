@@ -1,0 +1,77 @@
+{% extends "./base.html.twig" %}
+ {% block title %}Ajout Personne{% endblock title %} 
+ {% block add %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form action="ajouter" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
+                <h2 class="text-center">Formulaire personne seule</h2>
+                <div class=" progress mb-5">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 33%">
+
+                    </div>
+                </div>
+                <!-- <div class="form-row">
+                     <div class="form-group col-sm-6">
+                        <button type="button" class="btn btn-primary border-left-info border-0 w-100" data-toggle="modal" data-target="#exampleModal">
+                          <i class="fas fa-long-arrow-alt-right "></i><span class="ml-2  mr-2">Formulaires familles ou groupe de personne</span><i class="far fa-address-card"></i>
+                        </button> 
+              
+                      </div> 
+                </div> -->
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <select class="custom-select border-left-info" id="inputGroupSelect03" name="genre">
+                                <option selected>Veuillez sélectionner le genre</option>
+                                <option value="Homme">Homme</option>
+                                <option value="Femme">Femme</option>
+                              </select>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <select class="custom-select border-left-info" id="inputGroupSelect03" name="situation_familiale">
+                                <option selected>Veuillez sélectionner la situation familiale</option>
+                                <option value="Célibataire">Célibataire</option>
+                                <option value="Marié (e)">Marié(e)</option>
+                                <option value="Concubinage">Concubinage</option>
+                                <option value="Veuf ou veuve">Veuf ou Veuve</option>
+                                <option value="Divorcé(e)">Divorcé(e)</option>
+                              </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="Nom">Nom</label>
+                        <input type="text" name="nom" id="nom" class="form-control border-left-info " placeholder="Entrer le nom de famille" required>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="Prenom ">Prénom(s)</label>
+                        <input type="text" name="prenom" id="prenom" class="form-control border-left-info" placeholder="Entrer le prénom" required>
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="nationalité">Nationalité</label>
+                        <input type="text" name="nationalite" id=" nationalite" class="form-control border-left-info" placeholder="Entrer la nationalité" required>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="Date de naissance">Date de naissance</label>
+                        <input type="date" name="date_naissance" class="form-control border-left-info " required>
+                    </div>
+                </div>
+                <div class="form-row mt-4">
+                    <!-- <div class=" form-group custom-file col-sm-12 mb-5 ">
+                                <input type="file" class="custom-file-input " id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label border-left-info mt-3 " for="inputGroupFile01">Choisir un fichier</label>
+                              </div> -->
+
+                    <div class="form-group col-sm-12">
+                        <button type="submit" name="submit" value="ajouter" class="btn bg-info btn-primary btn-lg btn-block border-0 border-left-primary ">Enregister</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        {% endblock add %}

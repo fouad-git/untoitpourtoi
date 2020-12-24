@@ -1,0 +1,120 @@
+{% extends "./base.html.twig" %} 
+{% block title %}Modification personnes
+{% endblock title %} 
+{% block add %} 
+{% for personne in personnes %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form
+        action=""
+        method="POST"
+        class="needs-validation"
+        enctype="multipart/form-data"
+        novalidate
+      >
+        <div class="form-row">
+          <div class="form-group col-sm-12">
+            <h4 class="text-center">Modification formulaire personne seule</h4>
+            <hr />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-sm-6">
+            <select class="custom-select border-left-info" name="genre">
+              {% set tabCatGenre = ["Homme", "Femme"] %}
+               {% for genre in tabCatGenre %} 
+               {% set select = '' %} 
+               {% if genre == catGenre %} 
+               {% set select = 'selected' %} 
+               {% endif %}
+              <option value="{{ genre }}" {{select}}>{{ genre }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group col-sm-6">
+            <select
+              class="custom-select border-left-info"
+              id="inputGroupSelect03"
+              name="situation_familiale"
+            >
+              {% set tabCatsituationf = ["Célibataire", "Marié(e)",
+              "Concubinage", "veuf ou veuve", "Divorcé(e)"] %} {% for situation
+              in tabCatsituationf %} {% set select = '' %} {% if situation ==
+              catSituationf %} {% set select = 'selected' %} {% endif %}
+              <option value="{{ situation }}" {{select}}>
+                {{ situation }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-sm-6">
+            <label for="Nom">Nom</label>
+            <input
+              type="text"
+              name="nom"
+              value="{{ personne.PER_Nom }}"
+              id="nom"
+              class="form-control border-left-info"
+              placeholder="Entrer le nom de famille"
+              required
+            />
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label for="Prenom ">Prénom(s)</label>
+            <input
+              type="text"
+              name="prenom"
+              id="prenom"
+              value="{{ personne.PER_Prenom }}"
+              class="form-control border-left-info"
+              placeholder="Entrer le prénom"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-sm-6">
+            <label for="nationalité">Nationalité</label>
+            <input
+              type="text"
+              name="nationalite"
+              value="{{ personne.PER_Nationalite }}"
+              id=" nationalite"
+              class="form-control border-left-info"
+              placeholder="Entrer la nationalité"
+              required
+            />
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="Date de naissance">Date de naissance</label>
+            <input
+              type="date"
+              value="{{ personne.PER_DateNaissance }}"
+              name="date_naissance"
+              class="form-control border-left-info"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-row mt-4">
+          <div class="form-group col-sm-12">
+            <button
+              type="submit"
+              name="submit"
+              value="ajouter"
+              class="btn bg-info btn-primary btn-lg btn-block border-0 border-left-primary d"
+            >
+              Modifier
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    {% endfor %} 
+    {% endblock add %}

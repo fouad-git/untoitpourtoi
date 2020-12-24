@@ -1,0 +1,217 @@
+{% extends "./base.html.twig" %} {% block title %}Page d'accueil{% endblock title %} {% block add %}
+
+<!--
+
+2-Pouvoir ajouter plusieurs nuitees pour une personne   ainsi que plusieurs ressources
+
+-->
+<!-- Page Heading -->
+
+
+<div class="card shadow ">
+    <div class="card-header  d-flex justify-content-between align-items-center ">
+        <h6 class="m-0 font-weight-bold text-primary">Tableaux représentant les Personnes</h6>
+        <a href="/ajouter" class="btn-sm btn-facebook text-decoration-none" id="demo" role="button" aria-pressed="true"> Ajouter une personne <i class="fas fa-user-plus"></i> 
+</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">Genre</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Nationalité</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Ressources</th>
+                        <th scope="col">Nuitées</th>
+                        <th scope="col">Actions</th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th scope="col">Genre</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Nationalité</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Ressources</th>
+                        <th scope="col">Nuitées</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for personne in listePersonnes %}
+
+
+                    <tr scope="row">
+                        <td>{{ personne.PER_Genre }}</td>
+                        <td>{{ personne.PER_Nom }}</td>
+                        <td>{{ personne.PER_Prenom }}</td>
+                        <td>{{ personne.PER_Nationalite }}</td>
+                        <td>{{ personne.PER_Age }} ans</td>
+                        <td>{{ personne.RES_Montant }} €</td>
+
+                        <!-- nuitées -->
+                        <td>
+
+
+                            <a href="/affichenuitees?id={{ personne.PER_id }}" class="btn-sm btn-outline-success text-decoration-none" role="button" data-target="#nuiteesPersonnes{{ personne.PER_id }}" aria-pressed="true"  aria-pressed="true"><i class="fas fa-eye ">
+            
+          </i>
+      
+        </a>
+                            <a href="/plusnui?id={{ personne.PER_id }}" class="btn-sm btn-outline-info text-decoration-none" role="button" aria-pressed="true" aria-pressed="true"><i class="fas fa-bed"></i> <i class="fas fa-plus"></i> 
+        </a>
+                        </td>
+                        <!-- actions -->
+                        <td class=" d-flex justify-content-around align-items-center">
+                            <a href="/modifier?id={{ personne.PER_id }}" class="btn-sm btn-outline-primary text-decoration-none" role="button" aria-pressed="true"><i class="fas fa-user-edit"></i>
+      </a>
+                            <a href="#supprimerFiche{{ personne.PER_id }}" class="btn-sm btn-outline-primary text-decoration-none" role="button" data-toggle="modal" data-target="#supprimerFiche{{ personne.PER_id }}" aria-pressed="true"><i class="far fa-trash-alt"></i>
+      </a>
+                            <a href="#detailsPersonne{{ personne.PER_id }}" class="btn-sm btn-outline-success text-decoration-none" role="button" data-target="#detailsPersonne{{ personne.PER_id }}" aria-pressed="true" data-toggle="modal" aria-pressed="true"><i class="fab fa-stack-exchange"></i>
+      </a>
+                        </td>
+                    </tr>
+
+                    <!--debut modal nuitees-->
+                    <div class="modal fade" id="nuiteesPersonnes{{ personne.PER_id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog ">
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+
+
+                                    <h5 class="modal-title " id="exampleModalLabel">Les nuitées </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                                </div>
+                                {% for row in listePersonne %}
+
+
+                                <div class="modal-body">
+                                    <div class="card" style="width:25rem;">
+                                        <div class="card-header">
+                                            {{row.PER_Nom}} {{row.PER_Prenom}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item "><i class="fas fa-calendar-check"> </i> Date d'entrée : <span class="float-righ"> {{row.NUI_DateEntree|date("m/d/Y")}}</span> </li>
+                                            <li class="list-group-item"> <i class="fas fa-comment-dots"></i> Motif d'entrée : {{row.NUI_MotifEntree}}</li>
+                                            <li class="list-group-item"><i class="far fa-calendar-times"></i> Date de sortie : {{row.NUI_DateSortie|date("m/d/Y")}} </li>
+                                            <li class="list-group-item "> <i class="far fa-comment-dots"></i> Motif de sortie : {{row.NUI_MotifSortie}}</li>
+                                        </ul>
+                                        <div class="card-footer overflow-auto">
+                                            <i class="far fa-comment"></i> Commentaire : {{row.NUI_Commentaire}}
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+                                <!--fin modal body  -->
+                                {% endfor %}
+                            </div>
+                            <!--fin content-->
+                        </div>
+                        <!--fin modal dialog-->
+                    </div>
+                    <!-- fin modal -->
+                    <!--fin modal nuitees-->
+
+
+
+                    <!-- debut modal supprimer -->
+                    <div class="modal fade" role="dialog" id="supprimerFiche{{ personne.PER_id }}" tabindex="-1" data-backdrop="true" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Etes-vous sûr !</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        &times;
+      </button>
+                                </div>
+                                <!--fin header-->
+
+
+                                <div class="modal-body text-center pagination-centered">
+                                    <p>Voulez-vous vraiment supprimer cet enregistrement ?</p>
+                                </div>
+                                <!--fin body-->
+
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
+        Annuler
+      </button>
+                                    <a href="/supprimer?id={{ personne.PER_id }}" class="btn btn-primary">Supprimer</a
+        >
+    </div><!--fin footer-->
+    </div>
+  </div>
+</div><!--fin modal supprimer-->
+  
+  <!-- debut modal details -->
+          <div class="modal fade" id="detailsPersonne{{ personne.PER_id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        {%  for personne in listePersonne %}
+        <h5 class="modal-title" id="exampleModalLabel">{{ personne.PER_Nom }} {{ personne.PER_Prenom }} </h5>
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">  
+          <ul class="list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center"> Numéro d'enregistrement<span class="badge badge-success badge-pill">{{personne.PER_id}}</span></li>
+          </ul>
+          <ul class="list-group-flush">
+            <li class="list-group-item list-group-item-info">Les informations sur la personne</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Genre <span class="badge badge-primary badge-pill">{{personne.PER_Genre}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Date de naissance  <span class="badge badge-primary badge-pill">{{personne.PER_DateNaissance|date("m/d/Y")}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Age  <span class="badge badge-primary badge-pill">{{personne.PER_Age}} ans</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Situation familiale  <span class="badge badge-primary badge-pill">{{personne.PER_SituationFamiliale}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Nationalité <span class="badge badge-primary badge-pill">{{personne.PER_Nationalite}}</span> </li>
+          </ul>
+        
+          
+
+          <ul class="list-group-flush">
+            <li class="list-group-item list-group-item-warning">Le document d'identité</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Type de document  <span class="badge badge-warning badge-pill">{{personne.PID_Type}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Pay émetteur du document  <span class="badge badge-warning badge-pill">{{personne.PID_Pays}}</span></li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">Date de délivrance du document  <span class="badge badge-warning badge-pill">{{personne.PID_DateDelivrance|date("m/d/Y")}}</span></li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">Date d'expiration du document  <span class="badge badge-warning badge-pill">{{personne.PID_DateExpiration|date("m/d/Y")}}</span></li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">Justificatifs  <span class="badge badge-warning badge-pill">{{personne.PID_Imgnom}}</span></li>
+            </ul>
+          
+            
+            
+            <ul class="list-group-flush">
+            <li class="list-group-item list-group-item-success">Les ressources</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Type de ressource  <span class="badge badge-info badge-pill">{{personne.RES_Type}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Date de debut des ressources <span class="badge badge-info badge-pill">{{personne.RES_DateDebut|date("m/d/Y")}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Date de fin des ressources <span class="badge badge-info badge-pill">{{personne.RES_DateFin|date("m/d/Y")}}</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Le montant des ressources  <span class="badge badge-info badge-pill">{{personne.RES_Montant}} €</span></li>
+          </ul>
+            {% endfor %}  
+          
+        </div><!--fin modal details  -->
+        </div>
+        </div>
+        </div>
+    {% endfor %}
+  </tbody>
+       </table>
+    </div>
+  </div>
+</div>
+{% endblock add %}

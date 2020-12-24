@@ -1,0 +1,74 @@
+{% extends "./base.html.twig" %}
+{% block title %}ajout ressources{% endblock title %}
+{% block add %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4 text-center">Les ressources </h2>
+                     <div class="progress mb-5">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%"></div>
+</div>
+            <!-- CNI -->
+            <form action="ressources" method="POST" enctype="multipart/form-data">
+
+
+
+
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="typeres">Type de document</label>
+                        <select class="custom-select border-left-info" id="typedocument" name="restype">
+                            <option selected>Veuillez sélectionner le type de document</option>
+                            <option value="RSA">RSA</option>
+                            <option value="Chômage">Chômage</option>
+                            <option value="Salaire">Salaire</option>
+                            <option value="AAH">AAH</option>
+                            <option value="Mission Local">Mission Local</option>
+                            <option value="Autres">Autres</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="montantres">Le montant des ressources</label>
+                        <input type="text" name="montantres" id="montantres" class="form-control border-left-info"
+                            placeholder="Veuillez saisir le montant des ressources">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="datedebutres">Date de début des ressources</label>
+                        <input type="date" name="datedebutres" id="datedelivrance"
+                            class="form-control border-left-info " placeholder="Veuillez saisir la date début des ressources"
+                            required>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="dateexpiration">Date de fin des resssources</label>
+                        <input type="date" name="datefinres" id="dateexpiration"
+                            class="form-control border-left-info" placeholder="Veuilllez saisir la date de fin des ressources"
+                            required>
+                    </div>
+
+                </div>
+
+                <div class="form-row mt-4">
+                    <!-- <div class="form-group col-sm-6">
+
+                        <input type="file" name="piddocument[]" id="document" class="form-control border-left-info"
+                            multiple="" placeholder="Veuilllez télécharger un ou plusieurs document">
+                    </div> -->
+                    <div class="form-group col-sm-12">
+
+                        <button type="submit" name="ressources" value="Envoyer"
+                            class="btn  btn-primary btn-lg btn-block bg-success   border-0 border-left-info  ">Envoyer</button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock add %}

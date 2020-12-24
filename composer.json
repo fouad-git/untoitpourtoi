@@ -1,0 +1,24 @@
+{
+    "name": "gestioncentre/gestioncentre",
+    "description": "Interface de gestion de centre d'hébergement ",
+    "version": "0.1.0",
+    "type": "projet",
+    "keywords": ["nuitées", "hébérgement", "centre" , "Sans domicile fixe" , "Personnes"],
+    "homepage": "http://gestioncentre.local/affiche",
+    "time": "2020-11-18",
+    "license": "MIT",
+
+    "autoload": {
+        "psr-4": {
+            "App\\": "application/class/"
+        },
+        "files": ["application/parameters.php"]
+    },
+    
+    "require": {
+        "twig/twig": "^3.0",
+        "altorouter/altorouter": "^2.0"
+        
+    }
+    
+}

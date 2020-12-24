@@ -1,0 +1,77 @@
+{% extends "./base.html.twig" %}
+{% block title %}Modification ressources{% endblock title %}
+{% block add %}
+{% for lres in res %}
+  
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <!-- CNI -->
+      <form action="" method="POST" enctype="multipart/form-data">
+        
+        
+        
+        <h2 class=" text-center"> Modification des Ressources </h2>
+        <hr>
+        
+        
+        <div class="form-row">
+          <div class="form-group col-sm-6">
+                        <label for="typeres">Type de document</label>
+                        <select class="custom-select border-left-info" id="typedocument" name="restype">
+                          {% set tabCatyperes = ["RSA", "Chômage","Salaire","AAH","Mission Local","Autres"] %} 
+                          {% for typeRes in tabCatyperes%} {% set select = '' %}
+                          {% if typeRes == tabCatypepid %} {% set select = 'selected' %} {% endif %}
+                          <option value="{{ typeRes }}" {{select}}>
+                            {{ typeRes }}
+                          </option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                      <div class="form-group col-sm-6">
+                        <label for="montantres">Le montant des ressources</label>
+                        <input type="text" name="montantres" id="montantres" class="form-control border-left-info"
+                        value="{{lres.RES_Montant}}"
+                        placeholder="Veuillez saisir le montant des ressources">
+                      </div>
+                    </div>
+                    
+                <div class="form-row">
+                  <div class="form-group col-sm-6">
+                    <label for="datedebutres">Date de début des ressources</label>
+                    <input type="date" name="datedebutres" id="datedelivrance" value="{{lres.RES_DateDebut}}"
+                    class="form-control border-left-info " placeholder="Veuillez saisir la date début des ressources"
+                    required>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label for="dateexpiration">Date de fin des resssources</label>
+                    <input type="date" name="datefinres" id="dateexpiration" value="{{lres.RES_DateFin}}"
+                            class="form-control border-left-info" placeholder="Veuilllez saisir la date de fin des ressources"
+                            required>
+                          </div>
+
+                        </div>
+                        
+                        <div class="form-row mt-4">
+                          <!-- <div class="form-group col-sm-6">
+                            
+                            <input type="file" name="piddocument[]" id="document" class="form-control border-left-info"
+                            multiple="" placeholder="Veuilllez télécharger un ou plusieurs document">
+                          </div> -->
+                          <div class="form-group col-sm-12">
+                            
+                            <button type="submit" name="ressources" value="Modifier"
+                            class="btn  btn-primary btn-lg btn-block bg-success   border-0 border-left-info  ">Modifier</button>
+                          </div>
+                        </div>
+                        
+                        
+                      </form>
+                    </div>
+                  </div>
+                  
+                </div>
+                
+                
+                {% endfor %}
+                {% endblock add %}

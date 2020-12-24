@@ -1,0 +1,20 @@
+{
+  "name": "GestionCentre",
+  "version": "1.0.0",
+  "description": "Dans le cadre de mon stage de fin formation de développeur web et web mobile, je dois développer une application de gestion pour un centre d'hébergement pour sans domicile fixe.\r ## Preview",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://qd-consulting.visualstudio.com/GestionCentre/_git/GestionCentre"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.14.0",
+    "prettier": "^2.2.0"
+  }
+}

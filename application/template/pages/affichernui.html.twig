@@ -1,0 +1,63 @@
+{% extends "./base.html.twig" %} 
+{% block title %}Page nuitées{% endblock title %}
+ {% block add %}
+ <div class="card shadow ">
+    <div class="card-header  d-flex justify-content-between align-items-center ">
+        <h6 class="m-0 font-weight-bold text-primary">Tableaux des nuitées par personne</h6>
+        <a href="/" class="btn-sm btn-secondary text-decoration-none" role="button" aria-pressed="true">   <i class="fas fa-home"></i>
+</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <!-- <th scope="col">ID</th> -->
+                        <!-- <th scope="col">Nom</th>
+                         <th scope="col">Prénom</th> -->
+                         <th scope="col">Identité</th>
+                        <th scope="col">Date Entrée</th>
+                        <th scope="col">Motif à l'entrée</th>
+                        <th scope="col">Date de sortie</th>
+                        <th scope="col">Motif à la sortie</th>
+                        <th scope="col">Commentaire</th>
+                       
+                        
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    
+                    <tr>
+                        <!-- <th scope="col">ID</th> -->
+                         <!-- <th scope="col">Nom</th>
+                         <th scope="col">Prénom</th> -->
+                         <th scope="col">Identité</th>
+                        <th scope="col">Date Entrée</th>
+                        <th scope="col">Motif d'entrée</th>
+                        <th scope="col">Date de sortie</th>
+                        <th scope="col">Motif de sortie</th>
+                        <th scope="col">Commentaire</th>
+                        
+                    </tr>
+                </tfoot>
+                 <tbody>
+                  {% for nuitee in listeNuitees %}
+                   <tr>
+                     <!-- <td>{{nuitee.NUI_Id}}</td> -->
+                     <td>{{nuitee.PER_Nom}} {{nuitee.PER_Prenom}}</td>
+                     <!-- <td>{{nuitee.PER_Prenom}}</td> -->
+                     <td>{{nuitee.NUI_DateEntree|date("d/m/Y")}}</td>
+                     <td>{{nuitee.NUI_MotifEntree}}</td>
+                     <td>{{nuitee.NUI_DateSortie|date("d/m/Y")}}</td>
+                     <td>{{nuitee.NUI_MotifSortie}}</td>
+                     <td>{{nuitee.NUI_Commentaire}}</td>
+                     
+                   </tr>
+                  {% endfor %}
+                 </tbody>
+                 </table>
+    </div>
+  </div>
+</div>
+{% endblock add %}

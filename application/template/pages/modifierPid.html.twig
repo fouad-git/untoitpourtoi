@@ -1,0 +1,100 @@
+{% extends "./base.html.twig" %} 
+{% block title %}Modification pièce d'identité{% endblock
+title %} {% block add %}
+{% for unePid in pid %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      
+      <!-- CNI -->
+      <form action="" method="POST" enctype="multipart/form-data">
+        <h2 class="text-center">Modification des documents d'identité</h2>
+        <hr />
+
+        <div class="form-row">
+          <div class="form-group col-sm-6">
+            <label for="typedocument">Type de document</label>
+            <select
+              class="custom-select border-left-info"
+              id="typedocument"
+              name="pidType"
+            >
+            {% set tabCatypepid = ["carte identité", "Passeport","Permis","Carte vitale"] %} 
+            {% for dPid in tabCatypepid%} {% set select = '' %}
+            {% if dPid == tabCatypepid %} {% set select = 'selected' %} {% endif %}
+              <option value="{{ dPid }}" {{select}}>
+                {{ dPid }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="pidPays">Le pays émetteur de la piéce d'identité</label>
+            <input
+              type="text"
+              name="pidPays"
+              value="{{unePid.PID_Pays}}"
+              id="pidPays"
+              class="form-control border-left-info"
+              placeholder="Veuillez saisir le pays"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-sm-6">
+            <label for="datedelivrance">Date de délivrance du document</label>
+            <input
+              type="date"
+              name="datedelivrance"
+              value="{{unePid.PID_DateDelivrance}}"
+              id="datedelivrance"
+              class="form-control border-left-info"
+              placeholder="Veuillez saisir la date de délivrance"
+              required
+            />
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="dateexpiration">Date d'éxpiration du document</label>
+            <input
+              type="date"
+              name="dateexpiration"
+                value="{{unePid.PID_DateExpiration}}"
+              id="dateexpiration"
+              class="form-control border-left-info"
+              placeholder="Veuilllez saisir la date d'éxpiration"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-sm-6">
+            <input
+              type="file"
+              name="piddocument[]"
+              id="document"
+              value="{{unePid.PID_Imgnom}}"
+              class="form-control border-left-info"
+              multiple=""
+              placeholder="Veuilllez télécharger un ou plusieurs document"
+            />
+          </div>
+          <div class="form-group col-sm-6">
+            <button
+              type="submit"
+              name="pid"
+              value="modifier"
+              class="btn btn-primary btn-lg btn-block bg-warning border-0 border-left-info"
+            >
+              Modifier
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+{% endblock add %}

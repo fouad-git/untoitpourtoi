@@ -1,0 +1,9 @@
+<?php
+
+//Parametre connection bdd
+define('DBNAME','nombdd');
+define('USER','utilisateur');
+define('PASS','password');
+define('HOST','hote');
+define('PORT','3308');
+?>

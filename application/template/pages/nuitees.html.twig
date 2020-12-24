@@ -1,0 +1,72 @@
+{% extends "./base.html.twig" %}
+{% block title %}Ajout nuitées{% endblock title %}
+{% block add %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class=" text-center"> Les nuitées </h2>
+                     <div class="progress mb-5">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 98%"></div>
+</div>
+            
+            <form action="nuitees" method="POST" enctype="multipart/form-data">
+            <div id="plusForm">
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="dateentre">Date d'entrée</label>
+                        <input type="date" name="nuientre[]" id="dateentre" class="form-control border-left-info" multiple="true">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="nuientmotif">Le motif d'entrée</label>
+                        <input type="text" name="nuientmotif[]" id="nuientmotif" class="form-control border-left-info"
+                            placeholder="Veuillez saisir le motif d'entrée" multiple="true">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="datesortie">Date de sortie</label>
+                        <input type="date" name="nuisortie[]" id="datesortie" class="form-control border-left-info" multiple="true">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="nuisortmotif">Le motif de sortie</label>
+                        <input type="text" name="nuisortmotif[]" id="nuisortmotif" class="form-control border-left-info"
+                            placeholder="Veuillez saisir le motif d'entrée" multiple="true">
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="form-group col-sm-12">
+                      <label for="nuicoment">Votre commentaire :</label>
+                      <textarea name="nuicoment[]" id="nuicoment" cols="30" rows="5"  class="form-control rounded-0" multiple="true"></textarea>
+                    </div>
+                 </div>
+                    
+                </div>
+                    <div class="form-row mt-4">
+                    <div class="form-group col-sm-6">
+                        <button type="submit" name="nuitees" value="Envoyer"
+                            class="btn  btn-primary btn-lg btn-block bg-info   border-0 border-left-primary">Envoyer</button>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <button type="submit" id="plus"  value="plus"
+                            class="btn  btn-warning btn-lg btn-block  border-0 border-left-info  ">Plus d'enregistrement</button>
+                    </div>
+                    </div>
+
+
+            </form>
+        </div>
+    </div>
+
+</div>
+<!-- jquery pour avoir le même formulaire en plusieurs fois -->
+<script>
+    $('document').ready(function() {
+                    $('#plus').click(function(e) {
+                        e.preventDefault();
+                        $('#plusForm').append('<div class="form-row"> <div class="form-group col-sm-6"><label for="dateentre">Date d\'entrée</label><input type="date" name="nuientre[]" id="dateentre" class="form-control border-left-info"></div><div class="form-group col-sm-6"><label for="nuientmotif">Le motif d\'entrée</label><input type="text" name="nuientmotif[]" id="nuientmotif" class="form-control border-left-info" placeholder="Veuillez saisir le motif d\'entrée"></div></div><div class="form-row"><div class="form-group col-sm-6"><label for="datesortie">Date de sortie</label><input type="date" name="nuisortie[]" id="datesortie" class="form-control border-left-info"></div><div class="form-group col-sm-6"> <label for="nuisortmotif">Le motif de sortie</label><input type="text" name="nuisortmotif[]" id="nuisortmotif" class="form-control border-left-info" placeholder="Veuillez saisir le motif d\'entrée"> </div> </div><div class="form-row "> <div class="form-group col-sm-12"> <label for="nuicoment">Votre commentaire</label><textarea name="nuicoment[]" id="nuicoment" cols="30" rows="5"  class="form-control rounded-0"></textarea></div> </div>');
+                    });
+                });
+</script>
+
+{% endblock add %}
